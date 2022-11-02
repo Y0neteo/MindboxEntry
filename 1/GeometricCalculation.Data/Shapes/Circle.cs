@@ -2,7 +2,7 @@ using GeometricCalculation.Data.Shapes.Base;
 
 namespace GeometricCalculation.Data.Shapes
 {
-    public class Circle : IShape
+    public class Circle : Shape
     {
         private double _radius;
         public Circle(double radius)
@@ -21,8 +21,8 @@ namespace GeometricCalculation.Data.Shapes
             }
         }
 
-        public double GetArea() => _radius * _radius * Math.PI;
+        public override double GetArea() => _radius * _radius * Math.PI;
 
-        public double GetPerimeter() => Math.PI * 2 * _radius;
+        public override double GetPerimeter() => Math.PI * 2 * _radius;
     }
 }

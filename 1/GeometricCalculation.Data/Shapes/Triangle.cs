@@ -2,7 +2,7 @@ using GeometricCalculation.Data.Shapes.Base;
 
 namespace GeometricCalculation.Data.Shapes
 {
-    public class Triangle : IShape
+    public class Triangle : Shape
     {
         private double[] _sides;
         public Triangle(double[] sides)
@@ -25,9 +25,10 @@ namespace GeometricCalculation.Data.Shapes
 
         public bool IsRight => IsTriangleRight();
 
-        public double GetPerimeter() => _sides.Aggregate(0.0, (counter, value) => counter + value);
+        // Можно расширить поведение при различных условиях использовать разные формулы, как в методе ниже с нахождением площади
+        public override double GetPerimeter() => _sides.Aggregate(0.0, (counter, value) => counter + value);
 
-        public double GetArea()
+        public override double GetArea()
         {
             if (IsRight)
                 return GetAreaForRightTriangle();
@@ -49,7 +50,7 @@ namespace GeometricCalculation.Data.Shapes
                                                           .Take(2)
                                                           .Aggregate((first,second) => first * second / 2);
 
-        //Проверка прямоугольного треугольника по 3 сторонам
+        // Проверка прямоугольного треугольника по 3 сторонам
         private bool IsTriangleRight()
         {
             var largestSideSquare = Math.Pow(_sides.Max(), 2);
